@@ -13,8 +13,8 @@ namespace NetIdentityApp.Models.Concreate
     public class SmsSender : ISmsSender
     {
 
-        private string accountSid = "ACeed0fcda0ab2769a585f01235cc0d162";
-        private string authToken = "8c38a0de4b0edc6e8f129231d94447ae";
+        private string accountSid = "";
+        private string authToken = "";
 
         public async Task SendSmsAsync(string number, string message)
         {

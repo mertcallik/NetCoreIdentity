@@ -1,0 +1,71 @@
+﻿@model UserUpdateViewModel
+@{
+    Layout = "_Layout";
+}
+@section Styles
+{
+    body{
+    background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 99%,rgba(255,255,255,1) 100%);
+
+    }
+
+}
+<div>
+    <div class="w-50 mx-auto">
+        <h1 class="display-6">Update User</h1>
+        <hr/>
+        <form asp-action="Edit" method="post">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <div class="mb-3">
+                <label class="form-label" asp-for="UserName">Kullanıcı Adı</label>
+                <input class="form-control" asp-for="UserName"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="UserName">Ad Soyad</label>
+                <input class="form-control" asp-for="FullName"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="Email">E Posta</label>
+                <input class="form-control" asp-for="Email"/>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">Parola Güncelle</div>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="Password">Şifre</label>
+                        <input class="form-control" asp-for="Password"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="PasswordConfirm">Şifre Doğrulama</label>
+                        <input class="form-control" asp-for="PasswordConfirm"/>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3 card">
+                <div class="card-header">
+                    <div class="card-title">Roller</div>
+                </div>
+                @foreach (var rol in ViewBag.Roles)
+                {
+                    <div class="card-body">
+                        <div class="form-check ">
+
+                            <input class="form-check-input" name="SelectedRoles" type="checkbox" value="@rol" @(Model.SelectedRoles.Any(x=>x==rol)?"checked":"") id="rol_@rol" />
+                            <label class="form-check-label" for="rol_@rol">
+                                @rol
+                            </label>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </form>
+    </div>
+</div>

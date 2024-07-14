@@ -1,0 +1,16 @@
+﻿@model ConfirmPhoneNumberViewModel
+@{
+}
+
+<div class="container">
+    <form asp-action="CheckPhoneNumber" method="post">
+        <input type="hidden" asp-for="UserId"/>
+        <input type="hidden" asp-for="Token"/>
+        <div class="mb-3">
+            <label class="form-label">Telefonunuza Gelen dogrulama kodunu Giriniz</label>
+            <input type="text" asp-for="TokenFromUser" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">Dogrula</button>
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>

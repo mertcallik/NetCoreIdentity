@@ -1,0 +1,77 @@
+﻿@model AppRole
+@{
+    Layout = "_Layout";
+}
+@section Links
+{
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+}
+@section Styles
+{
+
+}
+
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center ">
+        <div class="col-md-4 ">
+            <form method="post" asp-action="Edit">
+
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Role Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary">Update Role</button>
+                </div>
+            </form>
+
+            <div asp-validation-summary="All"></div>
+        </div>
+        <div class="col-md-12  ">
+            <div class="card text-center">
+                <div class="card-header">
+                    <div class="card-title">Bu Role Sahip Kullanıcılar</div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered ">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>UserName</th>
+                                <th>Name</th>
+                                <th>E-Mail</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in ViewBag.Users)
+                            {
+                                <tr>
+                                    <td>@user.Id</td>
+                                    <td>@user.FullName</td>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <th>
+
+                                        <form asp-action="DeleteFromRole" class="d-inline-block" asp-controller="Roles" method="post" onsubmit="return confirm('Bu kullanıcı bu rolden silinsin mi?')">
+                                            <input type="hidden" name="RoleId" value="@Model.Id" />
+                                            <input type="hidden" name="userName" value="@user.UserName" />
+                                            <button class="btn btn-sm btn-danger" type="submit">Sil</button>
+                                            <a class="btn btn-sm btn-primary" asp-action="Edit" asp-controller="Users" asp-route-userName="@user.UserName">Düzenle</a>
+
+                                        </form>
+                                    </th>
+
+                                </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

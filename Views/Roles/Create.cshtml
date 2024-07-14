@@ -1,0 +1,29 @@
+﻿@model AppRole
+@{
+    Layout = "_Layout";
+}
+@section Styles
+{
+    body{
+    background: linear-gradient(to right,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 99%,rgba(255,255,255,1) 100%);
+    }
+
+}
+<div>
+    <div class="w-50 mx-auto">
+        <h1 class="display-6">Create Role !</h1>
+        <hr/>
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label class="form-label" asp-for="Name">Name</label>
+                <input class="form-control" asp-for="Name"/>
+            </div>
+
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </form>
+    </div>
+</div>
+
